@@ -43,7 +43,7 @@ const blogPosts = [
 
 const BlogResources = () => {
   return (
-    <div className="py-16 px-4 md:px-8 lg:px-16 bg-[#0A192F]">
+    <div className="py-16 px-4 md:px-8 lg:px-16 ">
       <Header />
       <BlogSwiper />
       <MoreButton />

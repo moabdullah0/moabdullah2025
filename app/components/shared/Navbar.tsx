@@ -1,14 +1,24 @@
 'use client'
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MdMenu, MdOutlineMail, MdClose } from "react-icons/md";
 import Link from "next/link";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <nav className="relative ">
+    <nav className={`fixed lg:px-24 top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#1B1B3A]' : ''}`}>
       {/* Main Navbar */}
       <div className="flex items-center justify-between px-4 md:px-8 py-4">
         {/* Logo */}
@@ -22,7 +32,7 @@ const Navbar = () => {
               Home
             </span>
           </Link>
-          <span className="text-gray-400">/</span>
+<div className="text-gray-400">/</div>
           <Link href="/my-work">
             <span className="font-semibold text-text px-2 py-1 rounded">
               My work
